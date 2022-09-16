@@ -27,3 +27,8 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+Route::get('/posts/show', function () {
+
+    return view('posts.show');
+})->name('posts.show');;
