@@ -75,7 +75,7 @@
 
         <hr class="my-8" />
 
-        <a href="#"
+        <a href="{{ route('google-auth') }}"
             class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-grey text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
             <svg class="mr-4 h-5 w-5 text-red-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -86,7 +86,8 @@
         </a>
 
         <p class="mt-4">
-            <a class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline" href="{{ route('login') }}">
+            <a class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                href="{{ route('login') }}">
                 Already have an account? Login
             </a>
         </p>
