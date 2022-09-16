@@ -26,6 +26,7 @@
 
 
                         <x-dropdown align="right" width="48">
+
                             <x-slot name="trigger">
 
                                 <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar"
@@ -42,8 +43,8 @@
                                     data-popper-placement="bottom"
                                     style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 1791px);">
                                     <div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
-                                        <div>Muhammad Hilmy</div>
-                                        <div class="font-medium truncate">mhazrla@gmail.com</div>
+                                        <div>{{ Auth::user()->name }}</div>
+                                        <div class="font-medium truncate">{{ Auth::user()->email }}</div>
                                     </div>
                                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="dropdownUserAvatarButton">
@@ -106,9 +107,27 @@
 
             <!-- Responsive Navigation Menu -->
             <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-                <div class="pt-2 pb-3 space-y-1">
+                <div>
                     <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-responsive-nav-link>
+                </div>
+
+                <div>
+                    <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                        {{ __('Create Post') }}
+                    </x-responsive-nav-link>
+                </div>
+
+                <div>
+                    <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                        {{ __('Bookmark') }}
+                    </x-responsive-nav-link>
+                </div>
+
+                <div>
+                    <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                        {{ __('Settings') }}
                     </x-responsive-nav-link>
                 </div>
 
