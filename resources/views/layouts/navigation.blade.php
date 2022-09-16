@@ -7,7 +7,7 @@
                     <div class="flex">
                         <!-- Logo -->
                         <div class="shrink-0 flex items-center">
-                            <a href="{{ route('dashboard') }}"
+                            <a href="{{ route('home') }}"
                                 class="bg-purple-400 md:p-2 text-white font-semibold rounded-lg text-gray-900">
                                 DevTeam B
                             </a>
@@ -15,8 +15,8 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                {{ __('Dashboard') }}
+                            <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                                {{ __('Home') }}
                             </x-nav-link>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                                                 aria-labelledby="dropdownUserAvatarButton">
                                                 <li>
                                                     <a href="#"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Home</a>
                                                 </li>
                                                 <li>
                                                     <a href="#"
@@ -130,9 +130,17 @@
 
             <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
                 @auth
+                    <!-- Responsive Settings Options -->
+                    <div class="pt-4 pb-1 border-t border-gray-200">
+                        <div class="px-4">
+                            <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                            <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                        </div>
+                        <hr class="bg-grey-500 my-2">
+                    </div>
                     <div>
-                        <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                        <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                            {{ __('Home') }}
                         </x-responsive-nav-link>
                     </div>
 
@@ -153,25 +161,18 @@
                             {{ __('Settings') }}
                         </x-responsive-nav-link>
                     </div>
-                    <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                            <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                        </div>
+                    <hr class="bg-grey-500">
+                    <div class="mt-1 space-y-1">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
 
-                        <div class="mt-3 space-y-1">
-                            <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <x-responsive-nav-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-responsive-nav-link>
-                            </form>
-                        </div>
+                            <x-responsive-nav-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
                     </div>
                 @endauth
 
