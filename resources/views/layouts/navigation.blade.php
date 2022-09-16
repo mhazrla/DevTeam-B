@@ -7,7 +7,7 @@
                     <div class="flex">
                         <!-- Logo -->
                         <div class="shrink-0 flex items-center">
-                            <a href="{{ route('dashboard') }}"
+                            <a href="{{ route('home') }}"
                                 class="bg-purple-400 md:p-2 text-white font-semibold rounded-lg text-gray-900">
                                 DevTeam B
                             </a>
@@ -15,76 +15,98 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                {{ __('Dashboard') }}
+                            <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                                {{ __('Home') }}
                             </x-nav-link>
                         </div>
                     </div>
 
+
                     <!-- Settings Dropdown -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <ul class="flex items-center">
+                            @auth
+                                <li>
+                                    <a href="#"
+                                        class="px-4 py-3 mr-5 text-grey-100 outline outline-offset-2 outline-2 no-underline bg-white-500 rounded hover:bg-grey-600 hover:no-underline hover:text-blue-200">
+                                        Create Post</a>
+                                </li>
+
+                                <x-dropdown align="right" width="48">
+
+                                    <x-slot name="trigger">
+
+                                        <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar"
+                                            class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                            type="button">
+                                            <img class="w-8 h-8 rounded-full"
+                                                src="https://flowbite.com/docs/images/people/profile-picture-3.jpg">
+                                        </button>
+
+                                        <!-- Dropdown menu -->
+                                        <div id="dropdownAvatar"
+                                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                                            data-popper-reference-hidden="" data-popper-escaped=""
+                                            data-popper-placement="bottom"
+                                            style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 1791px);">
+                                            <div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
+                                                <div>{{ Auth::user()->name }}</div>
+                                                <div class="font-medium truncate">{{ Auth::user()->email }}</div>
+                                            </div>
+                                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                                aria-labelledby="dropdownUserAvatarButton">
+                                                <li>
+                                                    <a href="#"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Home</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create
+                                                        Post</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bookmark</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                                                </li>
+                                            </ul>
+                                            <div class="py-1 ">
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <x-dropdown-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                        this.closest('form').submit();">
+                                                        {{ __('Log Out') }}
+                                                    </x-dropdown-link>
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+                                    </x-slot>
+
+                                    <x-slot name="content">
+
+                                    </x-slot>
+                                </x-dropdown>
+
+                            @endauth
+                            @guest
+                                <li>
+                                    <a href="{{ route('login') }}" class="p-3">Login</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('register') }}" class="p-3">Register</a>
+                                </li>
+                            @endguest
+
+                        </ul>
 
 
-                        <x-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-
-                                <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar"
-                                    class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                                    type="button">
-                                    <img class="w-8 h-8 rounded-full"
-                                        src="https://flowbite.com/docs/images/people/profile-picture-3.jpg">
-                                </button>
-
-                                <!-- Dropdown menu -->
-                                <div id="dropdownAvatar"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                                    data-popper-reference-hidden="" data-popper-escaped=""
-                                    data-popper-placement="bottom"
-                                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 1791px);">
-                                    <div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
-                                        <div>Muhammad Hilmy</div>
-                                        <div class="font-medium truncate">mhazrla@gmail.com</div>
-                                    </div>
-                                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                        aria-labelledby="dropdownUserAvatarButton">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create
-                                                Post</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bookmark</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1 ">
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-
-                                            <x-dropdown-link :href="route('logout')"
-                                                onclick="event.preventDefault();
-                                                                this.closest('form').submit();">
-                                                {{ __('Log Out') }}
-                                            </x-dropdown-link>
-                                        </form>
-
-                                    </div>
-                                </div>
-
-                            </x-slot>
-
-                            <x-slot name="content">
-
-                            </x-slot>
-                        </x-dropdown>
                     </div>
 
                     <!-- Hamburger -->
@@ -105,33 +127,69 @@
             </div>
 
             <!-- Responsive Navigation Menu -->
-            <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-                <div class="pt-2 pb-3 space-y-1">
-                    <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-responsive-nav-link>
-                </div>
 
-                <!-- Responsive Settings Options -->
-                <div class="pt-4 pb-1 border-t border-gray-200">
-                    <div class="px-4">
-                        <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                        <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+            <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+                @auth
+                    <!-- Responsive Settings Options -->
+                    <div class="pt-4 pb-1 border-t border-gray-200">
+                        <div class="px-4">
+                            <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                            <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                        </div>
+                        <hr class="bg-grey-500 my-2">
+                    </div>
+                    <div>
+                        <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                            {{ __('Home') }}
+                        </x-responsive-nav-link>
                     </div>
 
-                    <div class="mt-3 space-y-1">
+                    <div>
+                        <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                            {{ __('Create Post') }}
+                        </x-responsive-nav-link>
+                    </div>
+
+                    <div>
+                        <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                            {{ __('Bookmark') }}
+                        </x-responsive-nav-link>
+                    </div>
+
+                    <div>
+                        <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                            {{ __('Settings') }}
+                        </x-responsive-nav-link>
+                    </div>
+                    <hr class="bg-grey-500">
+                    <div class="mt-1 space-y-1">
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
                             <x-responsive-nav-link :href="route('logout')"
                                 onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                        this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-responsive-nav-link>
                         </form>
                     </div>
-                </div>
+                @endauth
+
+                @guest
+                    <div>
+                        <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                            {{ __('Login') }}
+                        </x-responsive-nav-link>
+                    </div>
+
+                    <div>
+                        <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                            {{ __('Register') }}
+                        </x-responsive-nav-link>
+                    </div>
+                @endguest
+
             </div>
         </nav>
     </header>
