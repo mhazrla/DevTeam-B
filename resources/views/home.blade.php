@@ -13,15 +13,17 @@
         <div class="grid mb-8 rounded-lg">
             <figure
                 class=" flex-col p-8  bg-white rounded-t-lg  md:rounded-t-none md:rounded-tl-lg  dark:bg-gray-800 dark:border-gray-700">
-                <figcaption class="flex space-x-3">
-                    <img class="w-9 h-9 rounded-full"
-                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
-                        alt="profile picture">
-                    <div class="space-y-0.5 font-medium dark:text-white text-left">
-                        <div>Author</div>
-                        <div class="text-sm font-light text-gray-500 dark:text-gray-400">Posted 3 mins ago</div>
-                    </div>
-                </figcaption>
+                <a href="{{ route('posts.show') }}">
+                    <figcaption class="flex space-x-3">
+                        <img class="w-9 h-9 rounded-full"
+                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+                            alt="profile picture">
+                        <div class="space-y-0.5 font-medium dark:text-white text-left">
+                            <div>Author</div>
+                            <div class="text-sm font-light text-gray-500 dark:text-gray-400">Posted 3 mins ago</div>
+                        </div>
+                    </figcaption>
+                </a>
                 <blockquote class="text-left ml-12 my-3 max-w-2xl text-gray-500 lg:mb-8 dark:text-gray-400">
                     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                         Title
