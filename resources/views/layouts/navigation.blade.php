@@ -8,7 +8,7 @@
                         <!-- Logo -->
                         <div class="shrink-0 flex items-center">
                             <a href="{{ route('home') }}"
-                                class="bg-purple-400 md:p-2 text-white font-semibold rounded-lg text-gray-900">
+                                class="bg-purple-400 p-2  text-white font-semibold rounded-lg text-gray-900">
                                 DevTeam B
                             </a>
                         </div>
@@ -19,6 +19,11 @@
                                 {{ __('Home') }}
                             </x-nav-link>
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                                {{ __('Reading List') }}
+                            </x-nav-link>
+                        </div>
                     </div>
 
 
@@ -27,7 +32,7 @@
                         <ul class="flex items-center">
                             @auth
                                 <li>
-                                    <a href="#"
+                                    <a href="{{ route('posts.create') }}"
                                         class="px-4 py-3 mr-5 text-grey-100 outline outline-offset-2 outline-2 no-underline bg-white-500 rounded hover:bg-grey-600 hover:no-underline hover:text-blue-200">
                                         Create Post</a>
                                 </li>
@@ -40,7 +45,7 @@
                                             class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                                             type="button">
                                             <img class="w-8 h-8 rounded-full"
-                                                src="https://flowbite.com/docs/images/people/profile-picture-3.jpg">
+                                                src="https://smkstellamaris-labuanbajo.sch.id/wp-content/uploads/2022/07/profil-photo-1.jpg">
                                         </button>
 
                                         <!-- Dropdown menu -->
@@ -57,16 +62,17 @@
                                                 aria-labelledby="dropdownUserAvatarButton">
                                                 <li>
                                                     <a href="#"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Home</a>
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"
+                                                    <a href="{{ route('posts.create') }}"
                                                         class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create
                                                         Post</a>
                                                 </li>
                                                 <li>
                                                     <a href="#"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bookmark</a>
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reading
+                                                        List</a>
                                                 </li>
                                                 <li>
                                                     <a href="#"
@@ -140,19 +146,19 @@
                     </div>
                     <div>
                         <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                            {{ __('Home') }}
+                            {{ __('Dashboard') }}
                         </x-responsive-nav-link>
                     </div>
 
                     <div>
-                        <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                        <x-responsive-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                             {{ __('Create Post') }}
                         </x-responsive-nav-link>
                     </div>
 
                     <div>
                         <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                            {{ __('Bookmark') }}
+                            {{ __('Reading List') }}
                         </x-responsive-nav-link>
                     </div>
 
