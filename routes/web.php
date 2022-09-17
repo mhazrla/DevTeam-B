@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,9 @@ Route::get('/posts/show', function () {
 
     return view('posts.show');
 })->name('posts.show');;
+
+
+Route::get('/users/readinglist', function () {
+
+    return view('users.readinglist');
+})->name('users.readinglist');;
