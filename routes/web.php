@@ -31,3 +31,8 @@ Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('goog
 Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+Route::get('/posts/show', function () {
+
+    return view('posts.show');
+})->name('posts.show');;
