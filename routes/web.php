@@ -43,3 +43,13 @@ Route::get('/users/readinglist', function () {
 
     return view('users.readinglist');
 })->name('users.readinglist');;
+
+Route::get('/users/dashboard', function () {
+
+    return view('users.dashboard');
+})->name('users.dashboard');;
+
+Route::get('/users/settings', function () {
+
+    return view('users.settings');
+})->name('users.settings');;
