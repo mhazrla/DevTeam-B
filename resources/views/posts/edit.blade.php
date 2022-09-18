@@ -29,12 +29,10 @@
 
                 <div class="w-full px-2 md:w-1/2">
                     <label for="category_id"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select
-                        an
-                        option</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Category</label>
                     <select id="category_id" name="category_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected="" disabled>Choose a country</option>
+                        <option selected="" disabled>Choose Category</option>
 
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" @if ($category->id === $post->category_id) selected @endif>
