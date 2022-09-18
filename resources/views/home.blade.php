@@ -34,24 +34,50 @@
                                 {{ ucwords($post->title) }}
                             </h2>
                         </a>
-                        <p class="my-1 font-light">{{ $post->category->name }}</p>
+                        <p class=" font-light">{{ $post->category->name }}</p>
                         @foreach ($post->tags as $tag)
                             <span
-                                @if ($tag->name) class=" font-light inline-block bg-gray-200 rounded-full p-1.5 text-sm font-semibold text-gray-700">
+                                @if ($tag->name) class="my-3 font-light inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">
                                 #{{ $tag->name }} @endif
                                 </span>
                         @endforeach
                     </blockquote>
 
                     <div>
-                        <a href="#" class="inline-flex py-2 px-3 mx-8 text-sm  text-center text-grey-50 ">
-                            <svg class="mr-3 h-5 w-5 text-black" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-                            </svg>
-                            77 Likes
-                        </a>
+
+                        @if (!$post->likedBy(auth()->user()))
+                            <form action="{{ route('posts.likes ', $post) }}" method="post" class="mr-1">
+                                @csrf
+                                <button type="submit"
+                                    class="inline-flex py-2 px-3 mx-8 text-sm  text-center text-grey-50 ">
+                                    <svg class="mr-3 h-5 w-5 text-black" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+                                    </svg>
+                                    <span>{{ $post->likes->count() }}
+                                        {{ Str::plural('like', $post->likes->count()) }}</span>
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('posts.likes ', $post) }}" method="post" class="mr-1">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="inline-flex py-2 px-3 mx-8 text-sm  text-center text-grey-50 ">
+                                    <svg class="mr-3 h-5 w-5 text-black" viewBox="0 0 24 24" fill="cyan"
+                                        stroke="#3134ff" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+                                    </svg>
+                                    <span>{{ $post->likes->count() }}
+                                        {{ Str::plural('like', $post->likes->count()) }}</span>
+                                </button>
+                            </form>
+                        @endif
+
 
                         <a href="#"
                             class="inline-flex float-right py-2 px-3 mx-12 text-sm font-medium text-center text-white ">
