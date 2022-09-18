@@ -58,6 +58,8 @@ Route::prefix('user')->controller(\App\Http\Controllers\UserController::class)->
         Route::get('dashboard', 'dashboard')->name('dashboard');
         Route::get('readinglist', 'readinglist')->name('readinglist');
         Route::get('settings', 'settings')->name('settings');
+        Route::put('updateprofile', 'updateprofile')->name('updateprofile');
+        Route::put('updatepassword', 'updatepassword')->name('updatepassword');
         Route::post('/', 'store')->name('store');
         Route::get('{post}/', 'show')->name('show');
         Route::delete('{post}', 'destroy')->name('destroy');
