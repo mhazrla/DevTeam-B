@@ -45,6 +45,8 @@ Route::prefix('posts')->controller(\App\Http\Controllers\PostController::class)-
         Route::get('create', 'create')->name('create')->middleware(['auth']);
         Route::post('/', 'store')->name('store')->middleware(['auth']);
         Route::get('{post}/', 'show')->name('show');
+        Route::get('{post}/edit', 'edit')->name('edit');
+        Route::put('{post}', 'update')->name('update');
         Route::delete('{post}', 'destroy')->name('destroy')->middleware(['auth']);
     });
 

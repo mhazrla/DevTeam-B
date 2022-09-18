@@ -34,10 +34,10 @@
                                 {{ ucwords($post->title) }}
                             </h2>
                         </a>
-                        <p class="my-1 font-light">{{ $post->category->name }}</p>
+                        <p class=" font-light">{{ $post->category->name }}</p>
                         @foreach ($post->tags as $tag)
                             <span
-                                @if ($tag->name) class=" font-light inline-block bg-gray-200 rounded-full p-1.5 text-sm font-semibold text-gray-700">
+                                @if ($tag->name) class="my-3 font-light inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">
                                 #{{ $tag->name }} @endif
                                 </span>
                         @endforeach

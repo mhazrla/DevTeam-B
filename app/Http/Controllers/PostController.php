@@ -75,7 +75,7 @@ class PostController extends Controller
         }
 
         $post->tags()->sync($newTags);
-        return to_route('posts.index')->with('status', 'Post has been updated.');
+        return to_route('home')->with('status', 'Post has been updated.');
     }
 
     public function destroy(Post $post)
