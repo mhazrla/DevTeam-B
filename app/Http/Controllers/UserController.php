@@ -18,4 +18,14 @@ class UserController extends Controller
             'user'
         ]));
     }
+
+    public function readinglist(User $user)
+    {
+        $posts = Post::latest()->with(['tags', 'category', 'user', 'likes'])->get();
+
+        return view('users.readinglist', compact([
+            'posts',
+            'user'
+        ]));
+    }
 }
