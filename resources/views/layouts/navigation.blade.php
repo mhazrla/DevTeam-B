@@ -20,7 +20,7 @@
                             </x-nav-link>
                         </div>
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                            <x-nav-link :href="route('users.settings')" :active="request()->routeIs('users.settings')">
                                 {{ __('Reading List') }}
                             </x-nav-link>
                         </div>
@@ -61,7 +61,7 @@
                                             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                                 aria-labelledby="dropdownUserAvatarButton">
                                                 <li>
-                                                    <a href="#"
+                                                    <a href="{{ route('users.dashboard') }}"
                                                         class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
                                                 </li>
                                                 <li>
@@ -70,12 +70,12 @@
                                                         Post</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"
+                                                    <a href="{{ route('users.readinglist') }}"
                                                         class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reading
                                                         List</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#"
+                                                    <a href="{{ route('users.settings') }}"
                                                         class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                                                 </li>
                                             </ul>
@@ -145,7 +145,7 @@
                         <hr class="bg-grey-500 my-2">
                     </div>
                     <div>
-                        <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        <x-responsive-nav-link :href="route('users.dashboard')" :active="request()->routeIs('users.dashboard')">
                             {{ __('Dashboard') }}
                         </x-responsive-nav-link>
                     </div>
@@ -157,13 +157,13 @@
                     </div>
 
                     <div>
-                        <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                        <x-responsive-nav-link :href="route('users.readinglist')" :active="request()->routeIs('users.readinglist')">
                             {{ __('Reading List') }}
                         </x-responsive-nav-link>
                     </div>
 
                     <div>
-                        <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                        <x-responsive-nav-link :href="route('users.settings')" :active="request()->routeIs('users.settings')">
                             {{ __('Settings') }}
                         </x-responsive-nav-link>
                     </div>
