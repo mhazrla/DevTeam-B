@@ -6,14 +6,19 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Http\Requests\UserSettingRequest;
+use App\Models\ReadingList;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
     public function dashboard(User $user)
     {
-        $posts = Post::latest()->with(['tags', 'category', 'user', 'likes'])->get();
+        $posts = Post::where('user_id', auth()->user()->id)->latest()->with(['tags', 'category', 'user', 'likes'])->get();
 
         return view('users.dashboard', compact([
             'posts',
@@ -43,11 +48,16 @@ class UserController extends Controller
 
     public function readinglist(User $user)
     {
-        $posts = Post::latest()->with(['tags', 'category', 'user', 'likes'])->get();
+        $readingList = ReadingList::where('user_id', auth()->user()->id)->get();
 
         return view('users.readinglist', compact([
-            'posts',
-            'user'
+            'readingList',
         ]));
+    }
+
+    public function settings(User $user)
+    {
+        $user = User::all();
+        return view('users.settings', compact('user'));
     }
 }
