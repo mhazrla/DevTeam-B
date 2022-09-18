@@ -66,7 +66,7 @@
                                 #{{ $tag->name }} @endif
                             </span>
                     @endforeach
-                    <p class="my-6 text-gray-700 dark:text-gray-200">{{ $post->description }}</p>
+                    <p class="my-6 text-gray-700 dark:text-gray-200"><?=$post->description ?></p>
                 </blockquote>
 
             </figure>
