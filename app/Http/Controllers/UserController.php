@@ -26,11 +26,6 @@ class UserController extends Controller
         ]));
     }
 
-    public function settings(User $user)
-    {
-
-        return view('users.settings', compact('user'));
-    }
 
     public function updatepassword(Request $request)
     {
