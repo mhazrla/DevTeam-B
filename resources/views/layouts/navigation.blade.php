@@ -20,7 +20,7 @@
                             </x-nav-link>
                         </div>
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link :href="route('users.settings')" :active="request()->routeIs('users.settings')">
+                            <x-nav-link :href="route('user.settings')" :active="request()->routeIs('user.settings')">
                                 {{ __('Reading List') }}
                             </x-nav-link>
                         </div>
@@ -61,7 +61,7 @@
                                             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                                 aria-labelledby="dropdownUserAvatarButton">
                                                 <li>
-                                                    <a href="{{ route('users.dashboard') }}"
+                                                    <a href="{{ route('user.dashboard') }}"
                                                         class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
                                                 </li>
                                                 <li>
@@ -70,12 +70,12 @@
                                                         Post</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('users.readinglist') }}"
+                                                    <a href="{{ route('user.readinglist') }}"
                                                         class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reading
                                                         List</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('users.settings') }}"
+                                                    <a href="{{ route('user.settings') }}"
                                                         class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                                                 </li>
                                             </ul>
@@ -145,7 +145,7 @@
                         <hr class="bg-grey-500 my-2">
                     </div>
                     <div>
-                        <x-responsive-nav-link :href="route('users.dashboard')" :active="request()->routeIs('users.dashboard')">
+                        <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                             {{ __('Dashboard') }}
                         </x-responsive-nav-link>
                     </div>
@@ -157,13 +157,13 @@
                     </div>
 
                     <div>
-                        <x-responsive-nav-link :href="route('users.readinglist')" :active="request()->routeIs('users.readinglist')">
+                        <x-responsive-nav-link :href="route('user.readinglist')" :active="request()->routeIs('user.readinglist')">
                             {{ __('Reading List') }}
                         </x-responsive-nav-link>
                     </div>
 
                     <div>
-                        <x-responsive-nav-link :href="route('users.settings')" :active="request()->routeIs('users.settings')">
+                        <x-responsive-nav-link :href="route('user.settings')" :active="request()->routeIs('user.settings')">
                             {{ __('Settings') }}
                         </x-responsive-nav-link>
                     </div>
