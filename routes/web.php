@@ -40,12 +40,13 @@ Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('goog
 Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
 
 
-Route::prefix('posts')->group(function () {
-    Route::get('/create', [PostController::class, 'create'])->name('posts.create')->middleware(['auth']);
-    Route::post('', [PostController::class, 'store'])->name('posts.store');
-    Route::get('/{post}', [PostController::class, 'show'])->name('posts.show');
-    Route::delete('/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
-});
+Route::prefix('posts')->controller(\App\Http\Controllers\PostController::class)->name('posts.')
+    ->group(function () {
+        Route::get('create', 'create')->name('create')->middleware(['auth']);
+        Route::post('/', 'store')->name('store')->middleware(['auth']);
+        Route::get('{post}/', 'show')->name('show');
+        Route::delete('{post}', 'destroy')->name('destroy')->middleware(['auth']);
+    });
 
 Route::prefix('users')->group(function () {
     Route::get('/readinglist', function () {
