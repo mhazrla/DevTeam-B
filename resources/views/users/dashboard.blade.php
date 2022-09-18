@@ -17,11 +17,12 @@
                 </svg>
             </div>
             <div>
+                {{-- {{ dd($user->totalLikes->count()) }} --}}
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Total Likes
+                    Total {{ Str::plural('like', $user->totalLikes->count()) }}
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    30
+                    {{ $user->totalLikes->count() }}
                 </p>
             </div>
         </div>
@@ -68,14 +69,15 @@
                                             on
                                             {{ $post->created_at->diffForHumans() }}</div>
 
-                                        <a href="#" class="inline-flex  text-sm  text-center text-grey-50 ">
+                                        <a class="inline-flex  text-sm  text-center text-grey-50 ">
                                             <svg class="mr-5 h-5 w-5 text-black" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round">
                                                 <path
                                                     d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
                                             </svg>
-                                            77 Likes
+                                            {{ $post->likes->count() }}
+                                            {{ Str::plural('like', $post->likes->count()) }}
                                         </a>
                                     </div>
                                 </div>
