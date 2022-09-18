@@ -12,7 +12,7 @@ use App\Http\Controllers\Auth\LogoutController;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\GoogleAuthController;
-
+use App\Http\Controllers\PostReadingListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,10 +53,14 @@ Route::prefix('posts')->controller(\App\Http\Controllers\PostController::class)-
 Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes ');
 Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.likes ');
 
+Route::post('/posts/{post}/readinglist', [PostReadingListController::class, 'store'])->name('posts.readinglist ');
+Route::delete('/posts/{post}/readinglist', [PostReadingListController::class, 'destroy'])->name('posts.readinglist ');
+
 Route::prefix('user')->controller(\App\Http\Controllers\UserController::class)->middleware('auth')->name('user.')
     ->group(function () {
         Route::get('dashboard', 'dashboard')->name('dashboard');
         Route::get('readinglist', 'readinglist')->name('readinglist');
+        // Route::get('readinglist', [PostReadingListController::class, 'readinglist'])->name('readinglist');
         Route::get('settings', 'settings')->name('settings');
         Route::post('/', 'store')->name('store');
         Route::get('{post}/', 'show')->name('show');

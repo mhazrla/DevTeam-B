@@ -79,13 +79,36 @@
                         @endif
 
 
-                        <a href="#"
-                            class="inline-flex float-right py-2 px-3 mx-12 text-sm font-medium text-center text-white ">
-                            <svg class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                            </svg>
-                        </a>
+                        @if (!$post->storedBy(auth()->user()))
+                            <form action="{{ route('posts.readinglist ', $post) }}" method="post" class="mr-1">
+                                @csrf
+                                <button type="submit"
+                                    class="inline-flex float-right py-2 px-3 mx-8 text-sm  text-center text-grey-50 ">
+                                    <svg class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                                    </svg>
+
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('posts.readinglist ', $post) }}" method="post" class="mr-1">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="inline-flex float-right py-2 px-3 mx-8 text-sm  text-center text-grey-50 ">
+                                    <svg class="h-6 w-6 text-black" fill="black" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                                    </svg>
+
+                                </button>
+                            </form>
+                        @endif
+
+
                     </div>
 
                 </figure>

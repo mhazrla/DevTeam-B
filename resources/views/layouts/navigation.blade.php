@@ -20,7 +20,7 @@
                             </x-nav-link>
                         </div>
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link :href="route('user.settings')" :active="request()->routeIs('user.settings')">
+                            <x-nav-link :href="route('user.readinglist')" :active="request()->routeIs('user.readinglist')">
                                 {{ __('Reading List') }}
                             </x-nav-link>
                         </div>

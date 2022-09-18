@@ -51,4 +51,9 @@ class Post extends Model
     {
         return $this->hasMany(ReadingList::class);
     }
+
+    public function storedBy(User $user)
+    {
+        return $this->readingLists->contains('user_id', $user->id);
+    }
 }
