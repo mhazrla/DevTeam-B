@@ -41,24 +41,22 @@ Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle
 
 
 Route::prefix('posts')->group(function () {
-    Route::get('/create', [PostController::class, 'create'])->name('posts.create');
+    Route::get('/create', [PostController::class, 'create'])->name('posts.create')->middleware(['auth']);
     Route::post('', [PostController::class, 'store'])->name('posts.store');
     Route::get('/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::delete('/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
-Route::get('/users/readinglist', function () {
+Route::prefix('users')->group(function () {
+    Route::get('/readinglist', function () {
+        return view('users.readinglist');
+    })->name('users.readinglist');;
 
-    return view('users.readinglist');
-})->name('users.readinglist');;
+    Route::get('/dashboard', function () {
+        return view('users.dashboard');
+    })->name('users.dashboard');;
 
-Route::get('/users/dashboard', function () {
-
-    return view('users.dashboard');
-})->name('users.dashboard');;
-
-Route::get('/users/settings', function () {
-
-    return view('users.settings');
-})->name('users.settings');;
-
+    Route::get('/settings', function () {
+        return view('users.settings');
+    })->name('users.settings');;
+});
