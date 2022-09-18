@@ -48,16 +48,12 @@ Route::prefix('posts')->controller(\App\Http\Controllers\PostController::class)-
         Route::delete('{post}', 'destroy')->name('destroy')->middleware(['auth']);
     });
 
-Route::prefix('users')->group(function () {
-    Route::get('/readinglist', function () {
-        return view('users.readinglist');
-    })->name('users.readinglist');;
-
-    Route::get('/dashboard', function () {
-        return view('users.dashboard');
-    })->name('users.dashboard');;
-
-    Route::get('/settings', function () {
-        return view('users.settings');
-    })->name('users.settings');;
-});
+Route::prefix('user')->controller(\App\Http\Controllers\UserController::class)->middleware('auth')->name('user.')
+    ->group(function () {
+        Route::get('dashboard', 'dashboard')->name('dashboard');
+        Route::get('readinglist', 'readinglist')->name('readinglist');
+        Route::get('settings', 'settings')->name('settings');
+        Route::post('/', 'store')->name('store');
+        Route::get('{post}/', 'show')->name('show');
+        Route::delete('{post}', 'destroy')->name('destroy');
+    });
