@@ -19,6 +19,14 @@ use App\Models\Like;
 
 class UserController extends Controller
 {
+
+    public function show(User $user)
+    {
+        $posts = Post::where('user_id', $user->id)->latest()->with(['tags', 'category', 'user', 'likes'])->get();
+        return view('users.show', compact('posts', 'user'));
+    }
+
+
     public function dashboard(User $user)
     {
         $posts = Post::where('user_id', auth()->user()->id)->latest()->with(['tags', 'category', 'user', 'likes'])->get();

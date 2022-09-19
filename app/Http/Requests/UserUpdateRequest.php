@@ -25,7 +25,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'username' => ['unique:users,username'],
+            'username' => ['required', 'unique:users,username'],
             'img' => 'image|mimes:png,jpg,jpeg|max:1024'
         ];
     }

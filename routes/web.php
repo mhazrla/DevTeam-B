@@ -68,7 +68,5 @@ Route::prefix('user')->controller(\App\Http\Controllers\UserController::class)->
         Route::get('settings', 'settings')->name('settings');
         Route::put('updatedata/{user}', 'updatedata')->name('updatedata');
         Route::put('updatepassword', 'updatepassword')->name('updatepassword');
-        // Route::post('/', 'store')->name('store');
-        // Route::get('{post}/', 'show')->name('show');
-        // Route::delete('{post}', 'destroy')->name('destroy');
+        Route::get('{user}/', 'show')->name('show');
     });
