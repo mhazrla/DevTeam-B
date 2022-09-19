@@ -44,8 +44,13 @@
                                         <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar"
                                             class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                                             type="button">
-                                            <img class="w-8 h-8 rounded-full"
-                                                src="https://smkstellamaris-labuanbajo.sch.id/wp-content/uploads/2022/07/profil-photo-1.jpg">
+                                            @if (Auth::user()->img == null)
+                                                <img class="w-8 h-8 rounded-full"
+                                                    src="https://smkstellamaris-labuanbajo.sch.id/wp-content/uploads/2022/07/profil-photo-1.jpg">
+                                            @else
+                                                <img class="w-8 h-8 rounded-full"
+                                                    src="{{ asset('/storage/' . Auth::user()->img) }}">
+                                            @endif
                                         </button>
 
                                         <!-- Dropdown menu -->

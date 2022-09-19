@@ -1,4 +1,3 @@
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -9,7 +8,7 @@
 
     <x-auth-session-status class="mb-4" :status="session(['status'])" />
 
-    @foreach ($posts as $post)
+    @forelse ($posts as $post)
         <div class="w-full h-fit mb-3 bg-white rounded-lg border-none shadow-md dark:bg-gray-800">
             @if ($post->img)
                 <a href="{{ route('posts.show', $post->id) }}">
@@ -22,8 +21,12 @@
 
                     <a href="#user">
                         <figcaption class="flex space-x-3">
-                            <img class="w-9 h-9 rounded-full"
-                                src="https://smkstellamaris-labuanbajo.sch.id/wp-content/uploads/2022/07/profil-photo-1.jpg">
+                            @if ($post->user->img == null)
+                                <img class="w-8 h-8 rounded-full"
+                                    src="https://smkstellamaris-labuanbajo.sch.id/wp-content/uploads/2022/07/profil-photo-1.jpg">
+                            @else
+                                <img class="w-8 h-8 rounded-full" src="{{ asset('/storage/' . $post->user->img) }}">
+                            @endif
                             <div class="space-y-0.5 font-medium dark:text-white text-left">
                                 <div>{{ $post->user->name }}</div>
                                 <div class="text-sm font-light text-gray-500 dark:text-gray-400">
@@ -37,13 +40,14 @@
                                 {{ ucwords($post->title) }}
                             </h2>
                         </a>
-                        <a href="{{ route('categories.show', $post->category->id) }}" class=" font-light"> {{ $post->category->name }}</a><br>
+                        <a href="{{ route('categories.show', $post->category->id) }}" class=" font-light">
+                            {{ $post->category->name }}</a><br>
                         @foreach ($post->tags as $tag)
-                        <a href="{{ route('tags.show', $tag->id) }}"><span
-                            @if ($tag->name) class="my-3 font-light inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">
-                            #{{ $tag->name }} @endif
-                            </span>
-                        </a>
+                            <a href="{{ route('tags.show', $tag->id) }}"><span
+                                    @if ($tag->name) class="my-3 font-light inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">
+                    #{{ $tag->name }} @endif
+                                    </span>
+                            </a>
                         @endforeach
                     </blockquote>
 
@@ -148,9 +152,21 @@
                 </figure>
             </div>
         </div>
-    @endforeach
-
-
+    @empty
+        <div class="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+            role="alert">
+            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor"
+                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Info alert!</span> There is no post here.
+            </div>
+        </div>
+    @endforelse
 
 
 

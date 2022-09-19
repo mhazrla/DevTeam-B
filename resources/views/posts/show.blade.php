@@ -16,17 +16,21 @@
     <div class="w-full h-fit mb-3 bg-white rounded-lg border-none shadow-md dark:bg-gray-800">
 
         @if ($post->img)
-                <a href="{{ route('posts.show', $post->id) }}">
-                    <img src="{{ url('/storage/' . $post->img) }}" class="rounded-t-lg w-full h-1/5" />
-                </a>
+            <a href="{{ route('posts.show', $post->id) }}">
+                <img src="{{ url('/storage/' . $post->img) }}" class="rounded-t-lg w-full h-1/5" />
+            </a>
         @endif
         <div class="grid  rounded-lg">
             <figure
                 class="flex-col p-8  bg-white rounded-t-lg  md:rounded-t-none md:rounded-tl-lg  dark:bg-gray-800 dark:border-gray-700">
                 <figcaption class="flex space-x-3 justify-between">
                     <div class="inline-flex">
-                        <img class="w-9 h-9 rounded-full"
-                            src="https://smkstellamaris-labuanbajo.sch.id/wp-content/uploads/2022/07/profil-photo-1.jpg">
+                        @if ($post->user->img == null)
+                            <img class="w-8 h-8 rounded-full"
+                                src="https://smkstellamaris-labuanbajo.sch.id/wp-content/uploads/2022/07/profil-photo-1.jpg">
+                        @else
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('/storage/' . $post->user->img) }}">
+                        @endif
                         <div class="px-3 font-medium dark:text-white text-left">
                             <div>{{ $post->user->name }}</div>
                             <div class="text-sm font-light text-gray-500 dark:text-gray-400">
@@ -105,15 +109,16 @@
                             {{ ucwords($post->title) }}
                         </h2>
                     </a>
-                    <a href="{{ route('categories.show', $post->category->id) }}" class=" font-light"> {{ $post->category->name }}</a><br>
+                    <a href="{{ route('categories.show', $post->category->id) }}" class=" font-light">
+                        {{ $post->category->name }}</a><br>
                     @foreach ($post->tags as $tag)
                         <a href="{{ route('tags.show', $tag->id) }}"><span
-                            @if ($tag->name) class="my-3 font-light inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">
+                                @if ($tag->name) class="my-3 font-light inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">
                             #{{ $tag->name }} @endif
-                            </span>
+                                </span>
                         </a>
                     @endforeach
-                    <p class="my-6 text-gray-700 dark:text-gray-200"><?=$post->description ?></p>
+                    <p class="my-6 text-gray-700 dark:text-gray-200"><?= $post->description ?></p>
                 </blockquote>
 
             </figure>

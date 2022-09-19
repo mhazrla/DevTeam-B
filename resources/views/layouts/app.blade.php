@@ -21,7 +21,7 @@
 <body class="font-sans antialiased">
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
         <x-sidebar />
-        @include('layouts.navigation')
+        <x-navbar />
 
         <!-- Page Heading -->
         <main class="h-full overflow-y-auto">
