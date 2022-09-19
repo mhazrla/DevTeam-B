@@ -23,7 +23,8 @@ class PostController extends Controller
 
     public function store(PostStoreRequest $request)
     {
-        $tags = explode('#', $request->tags);
+        $tagsInput = explode('#', $request->tags);
+        $tags = array_filter($tagsInput, 'trim');
 
         $validatedData = $request->validated();
         if ($request->has('img')) {
@@ -49,6 +50,8 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
+
         $categories = Category::all();
         $tags = $post->tags->implode('name', '#');
         return view('posts.edit', compact('post', 'tags', 'categories'));
@@ -80,6 +83,8 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
+
         Storage::delete($post->img);
         $post->tags()->detach();
         $post->delete();

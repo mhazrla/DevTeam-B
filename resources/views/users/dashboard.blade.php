@@ -17,12 +17,11 @@
                 </svg>
             </div>
             <div>
-                {{-- {{ dd($user->totalLikes->count()) }} --}}
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                     Total {{ Str::plural('like', $user->totalLikes->count()) }}
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    {{ $user->totalLikes->count() }}
+                    {{ $totalLikes }}
                 </p>
             </div>
         </div>
@@ -58,7 +57,10 @@
                         <figure class="flex-col  bg-white rounded-lg   dark:bg-gray-800 dark:border-gray-700">
                             <figcaption class="flex space-x-3">
                                 <div class="inline-flex">
-                                    <img class="rounded-lg" width="20%" src="{{ url('/storage/' . $post->img) }}">
+                                    @if ($post->img)
+                                        <img class="rounded-lg" width="20%"
+                                            src="{{ url('/storage/' . $post->img) }}">
+                                    @endif
                                     <div class="px-3 py-2">
                                         <a href="{{ route('posts.show', $post->id) }}"
                                             class="text-2xl font-semibold text-gray-700 dark:text-gray-200">

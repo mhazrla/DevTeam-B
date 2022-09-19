@@ -20,7 +20,7 @@
 
 <body class="font-sans antialiased">
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
-        @include('layouts.sidebar')
+        <x-sidebar />
         @include('layouts.navigation')
 
         <!-- Page Heading -->
@@ -59,7 +59,7 @@
     </div>
 
     <script>
-        CKEDITOR.replace( 'description' ).require;
+        CKEDITOR.replace('description').require;
     </script>
 </body>
 

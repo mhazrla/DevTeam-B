@@ -60,11 +60,10 @@ Route::prefix('user')->controller(\App\Http\Controllers\UserController::class)->
     ->group(function () {
         Route::get('dashboard', 'dashboard')->name('dashboard');
         Route::get('readinglist', 'readinglist')->name('readinglist');
-        // Route::get('readinglist', [PostReadingListController::class, 'readinglist'])->name('readinglist');
         Route::get('settings', 'settings')->name('settings');
-        Route::put('updateprofile', 'updateprofile')->name('updateprofile');
+        Route::put('updatedata/{user}', 'updatedata')->name('updatedata');
         Route::put('updatepassword', 'updatepassword')->name('updatepassword');
-        Route::post('/', 'store')->name('store');
-        Route::get('{post}/', 'show')->name('show');
-        Route::delete('{post}', 'destroy')->name('destroy');
+        // Route::post('/', 'store')->name('store');
+        // Route::get('{post}/', 'show')->name('show');
+        // Route::delete('{post}', 'destroy')->name('destroy');
     });
