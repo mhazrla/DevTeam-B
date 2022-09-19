@@ -15,9 +15,11 @@
 
     <div class="w-full h-fit mb-3 bg-white rounded-lg border-none shadow-md dark:bg-gray-800">
 
-        <a href="#">
-            <img src="{{ url('/storage/' . $post->img) }}" class="rounded-t-lg w-full h-fit" />
-        </a>
+        @if ($post->img)
+                <a href="{{ route('posts.show', $post->id) }}">
+                    <img src="{{ url('/storage/' . $post->img) }}" class="rounded-t-lg w-full h-1/5" />
+                </a>
+        @endif
         <div class="grid  rounded-lg">
             <figure
                 class="flex-col p-8  bg-white rounded-t-lg  md:rounded-t-none md:rounded-tl-lg  dark:bg-gray-800 dark:border-gray-700">
@@ -103,12 +105,13 @@
                             {{ ucwords($post->title) }}
                         </h2>
                     </a>
-                    <p class=" font-light">{{ $post->category->name }}</p>
+                    <a href="{{ route('categories.show', $post->category->id) }}" class=" font-light"> {{ $post->category->name }}</a><br>
                     @foreach ($post->tags as $tag)
-                        <span
+                        <a href="{{ route('tags.show', $tag->id) }}"><span
                             @if ($tag->name) class="my-3 font-light inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">
-                                #{{ $tag->name }} @endif
+                            #{{ $tag->name }} @endif
                             </span>
+                        </a>
                     @endforeach
                     <p class="my-6 text-gray-700 dark:text-gray-200"><?=$post->description ?></p>
                 </blockquote>

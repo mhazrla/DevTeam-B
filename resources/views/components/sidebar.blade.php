@@ -46,7 +46,7 @@
                 <ul id="categories" class="hidden py-2 space-y-2">
                     @foreach ($categories as $category)
                         <li>
-                            <a href="#"
+                            <a href="{{ route('categories.show', $category->id) }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $category->name }}</a>
                         </li>
                     @endforeach
@@ -74,7 +74,7 @@
                 <ul id="tags" class="hidden py-2 space-y-2">
                     @forelse ($tags as $tag)
                         <li>
-                            <a href="#"
+                            <a href="{{ route('tags.show', $tag->id) }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $tag->name }}</a>
                         </li>
                     @empty
