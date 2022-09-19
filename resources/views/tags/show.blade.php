@@ -1,9 +1,9 @@
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            {{ __('Home') }}
+        Posts by tags #{{ $tag->name }}
         </h2>
-
     </x-slot>
 
     <x-auth-session-status class="mb-4" :status="session(['status'])" />
@@ -12,7 +12,7 @@
         <div class="w-full h-fit mb-3 bg-white rounded-lg border-none shadow-md dark:bg-gray-800">
             @if ($post->img)
                 <a href="{{ route('posts.show', $post->id) }}">
-                    <img src="{{ url('/storage/' . $post->img) }}" class="rounded-t-lg w-full h-1/2" />
+                    <img src="{{ url('/storage/' . $post->img) }}" class="rounded-t-lg w-full h-1/5" />
                 </a>
             @endif
             <div class="grid mb-8 rounded-lg">
