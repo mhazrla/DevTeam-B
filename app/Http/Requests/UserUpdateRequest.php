@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserUpdateRequest extends FormRequest
@@ -25,7 +26,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'username' => ['required', 'unique:users,username'],
+            'username' => [Rule::when($this->isMethod('PUT'), '', 'required'), Rule::unique('users')->ignore($this->user)],
             'img' => 'image|mimes:png,jpg,jpeg|max:1024'
         ];
     }
