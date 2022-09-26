@@ -13,14 +13,15 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased">
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
-        @include('layouts.sidebar')
-        @include('layouts.navigation')
+        <x-sidebar />
+        <x-navbar />
 
         <!-- Page Heading -->
         <main class="h-full overflow-y-auto">
@@ -57,6 +58,9 @@
     </div>
     </div>
 
+    <script>
+        CKEDITOR.replace('description').require;
+    </script>
 </body>
 
 </html>

@@ -3,20 +3,22 @@
         <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
             DevTeam B
         </a>
-
         <ul class="mt-6">
             <li class="relative px-6 py-3">
-                <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                <span
+                    class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg
                     aria-hidden="true"></span>
                 <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                    href="index.html">
-                    <span class="ml-4">Dashboard</span>
+                    href="{{ route('home') }}">
+                    <span class="ml-4">Home</span>
                 </a>
             </li>
             <li class="relative px-6 py-3">
-
+                <span
+                    class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg
+                aria-hidden="true"></span>
                 <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                    href="index.html">
+                    href="{{ route('user.readinglist') }}">
                     <span class="ml-4">Reading List</span>
                 </a>
             </li>
@@ -42,18 +44,12 @@
                     </svg>
                 </button>
                 <ul id="categories" class="hidden py-2 space-y-2">
-                    <li>
-                        <a href="#"
-                            class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Fiction</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Trivia</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Trending</a>
-                    </li>
+                    @foreach ($categories as $category)
+                        <li>
+                            <a href="{{ route('categories.show', $category->id) }}"
+                                class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $category->name }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
 
@@ -76,18 +72,16 @@
                     </svg>
                 </button>
                 <ul id="tags" class="hidden py-2 space-y-2">
-                    <li>
-                        <a href="#"
-                            class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Hot</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Soccer</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Siu</a>
-                    </li>
+                    @forelse ($tags as $tag)
+                        <li>
+                            <a href="{{ route('tags.show', $tag->id) }}"
+                                class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $tag->name }}</a>
+                        </li>
+                    @empty
+                        <li>
+                            No tags available
+                        </li>
+                    @endforelse
                 </ul>
             </li>
         </ul>
